@@ -37,7 +37,7 @@ const int MAX_JOY_VAL = 255;
 
 void move_in_direction(int angle) {
   float xval = MAX_JOY_VAL * cos(angle); // Note to Hunter:
-  float yval = MAX_JOY_VAL * sin(angle); // Don't bitch about the trig
+  float yval = MAX_JOY_VAL * sin(angle); // Don't complain about the trig
 
   motor[DriveFR] = yval - xval + J1X1();
   motor[DriveFL] = yval + xval - J1X1();
