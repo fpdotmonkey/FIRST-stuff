@@ -10,7 +10,7 @@
 #pragma config(Motor,  mtr_S1_C1_2, DriveBL, tmotorTetrix, openLoop, encoder)
 #pragma config(Sensor, S1,          compass,               sensorI2CCustom)
 
-#include "hitechnic-compass.h" /// TODO: get this file in /Autonomous\ Matrix
+#include "hitechnic-compass.h" /// TODO: tell the compiler to include from this file's directory
 #include "JoystickDriver.c"
 
 int limitJoy(int joyVal) {
