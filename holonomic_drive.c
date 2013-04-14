@@ -33,7 +33,7 @@ void holonomic_drive() {
 
 int compassBearing() { return HTMCreadHeading(compass); }
 
-const int MAX_JOY_VAL = 255;
+const int MAX_JOY_VAL = 255; // The highest value J1X2() can be
 
 void move_in_direction(int angle) {
   float xval = MAX_JOY_VAL * cos(angle); // Note to Hunter:
