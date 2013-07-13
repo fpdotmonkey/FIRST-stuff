@@ -4,6 +4,10 @@
 // Copyright (c) Fletcher Porter 2013
 //
 
+// use this in your RobotC programs by placing the file in an include directory
+// and writing this in your program:
+// #include 'preprocessor_checks.h'
+
 #ifndef ROBOTC
 #error You need to compile this in RobotC
 #endif
