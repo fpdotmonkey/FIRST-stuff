@@ -10,7 +10,7 @@
 #pragma config(Motor,  mtr_S1_C1_2, DriveBL, tmotorTetrix, openLoop, encoder)
 #pragma config(Sensor, S1,          compass,               sensorI2CCustom)
 
-#include "hitechnic-compass.h" /// TODO: get this file in /Autonomous\ Matrix
+#include "hitechnic-compass.h" /// TODO: tell the compiler to include from this file's directory
 #include "JoystickDriver.c"
 
 int limitJoy(int joyVal) {
@@ -33,11 +33,11 @@ void holonomic_drive() {
 
 int compassBearing() { return HTMCreadHeading(compass); }
 
-const int MAX_JOY_VAL = 255;
+const int MAX_JOY_VAL = 255; // The greatest value J1X2() can be
 
 void move_in_direction(int angle) {
-  float xval = MAX_JOY_VAL * cos(angle); // Note to Hunter:
-  float yval = MAX_JOY_VAL * sin(angle); // Don't complain about the trig
+  float xval = MAX_JOY_VAL * cos(angle);
+  float yval = MAX_JOY_VAL * sin(angle);
 
   motor[DriveFR] = yval - xval + J1X1();
   motor[DriveFL] = yval + xval - J1X1();
@@ -47,14 +47,15 @@ void move_in_direction(int angle) {
 
 // smart means you can move forward and rotate passively
 void smart_holonomic_drive() {
-  if (J1X1() == 0) {
+  if (J1X1() == 0) { // get rid of this chunk to make forward always be
+    //                  the front of the robot at the start of the TeleOp phase
     motor[DriveFR] = J1Y2() - J1X2();
     motor[DriveFL] = J1Y2() + J1X2();
     motor{DriveBL] = J1Y2() - J1X2();
     motor{DriveBR] = J1Y2() + J1X2();
   }
   else {
-    int joystickAngle = 45 * J1Y2() / J1X2();
+    int joystickAngle = atan(J1Y2() / J1X2()); // leave this chunk, though
     move_in_direction(joystickAngle - compassBearing());
   }
 }
