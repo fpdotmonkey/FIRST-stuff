@@ -46,6 +46,14 @@ double dot_prod(vect vect1, vect vect2) {
   return prod;
 }
 
+vect cross_prod(vect vect1, vect vect2) {
+  vect cross;
+  cross.x = vect1.y * vect2.z - vect1.z * vect2.y;
+  cross.y = vect1.z * vect2.x - vect1.x * vect2.z;
+  cross.z = vect1.x * vect2.y - vect1.y * vect2.x;
+  return cross;
+}
+
 vect unit_vector(vect vector) {
   return mult(1/magnitude(vector), vector);
 }
